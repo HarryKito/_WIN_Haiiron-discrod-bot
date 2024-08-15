@@ -1,6 +1,6 @@
 #include "MyBot.h"
-#include <dpp/dpp.h>
 
+#include <dpp/dpp.h>
 /* Be sure to place your token in the line below.
  * Follow steps here to get a token:
  * https://dpp.dev/creating-a-bot-application.html
@@ -8,10 +8,10 @@
  * scopes 'bot' and 'applications.commands', e.g.
  * https://discord.com/oauth2/authorize?client_id=940762342495518720&scope=bot+applications.commands&permissions=139586816064
  */
-const std::string    BOT_TOKEN    = "add your token here";
 
 int main()
 {
+	const std::string BOT_TOKEN = get_discord_token();
 	/* Create bot cluster */
 	dpp::cluster bot(BOT_TOKEN);
 

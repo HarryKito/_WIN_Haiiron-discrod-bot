@@ -1,4 +1,7 @@
 /* Some user friendly sanity checks to cut down on silly support issues */
+#pragma once
+
+#include <dpp/dpp.h>
 
 #if !defined(_MSC_VER) || (_MSC_VER < 1929)
 	#error "This template is only for Microsoft Visual C++ 2019 and later. To build a D++ bot in Visual Studio Code, or on any other platform or compiler please use https://github.com/brainboxdotcc/templatebot"
@@ -11,3 +14,22 @@
 #if !defined(DPP_WIN_TEMPLATE) && !defined(DPP_CI)
 	#error "You must compile this template using its .sln file. You cannot just double click the .cpp file and compile it on its own. Ensure you checked out the full source code of the template!"
 #endif
+
+using namespace std;
+
+// Get the TOKEN
+string get_discord_token()
+{
+	ifstream file("key");
+	string key;
+
+	if (file.is_open())
+	{
+	getline(file, key);  // READ only one line of the 'key' file
+	file.close();
+    }
+	else
+        cerr << "Unable to open the 'key' file.\nPlease check the file is exist." << endl;
+
+	return key;
+}
