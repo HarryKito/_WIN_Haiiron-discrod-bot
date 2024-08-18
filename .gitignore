@@ -5,6 +5,7 @@ weather
 
 # development envs...
 /.vs
+/.vscode
 MyBot/Debug
 MyBot/Release
 ## Ignore Visual Studio temporary files, build results, and

@@ -1,44 +1,50 @@
 #include "MyBot.h"
-
 #include <dpp/dpp.h>
-/* Be sure to place your token in the line below.
- * Follow steps here to get a token:
+
+// FIXME: 
+//	봇 명령 입출력에서 한글이 지원되지 않음...
+// UTF-8 문제일까?
+
+/* 토큰을 반드시 key 파일에 저장 후 사용해주세요!
+ * 토근을 발급받는 방법!
  * https://dpp.dev/creating-a-bot-application.html
- * When you invite the bot, be sure to invite it with the 
- * scopes 'bot' and 'applications.commands', e.g.
- * https://discord.com/oauth2/authorize?client_id=940762342495518720&scope=bot+applications.commands&permissions=139586816064
+ * 봇을 초대할 때는 반드시 '봇' 범위와
+ * 범위를 지정하여 초대하십시오. Ex. 'applications.commands'
  */
 
 int main()
 {
 	const std::string BOT_TOKEN = get_discord_token();
-	/* Create bot cluster */
+
+	/* 봇 클러스터 생성*/
 	dpp::cluster bot(BOT_TOKEN);
 
-	/* Output simple log messages to stdout */
+	/* 표준출력에 간단한 로그 메시지 출력 */
 	bot.on_log(dpp::utility::cout_logger());
 
-	/* Register slash command here in on_ready */
-	bot.on_ready([&bot](const dpp::ready_t& event) {
-		/* Wrap command registration in run_once to make sure it doesnt run on every full reconnection */
-		if (dpp::run_once<struct register_bot_commands>()) {
-			std::vector<dpp::slashcommand> commands {
-				{ "ping", "Ping pong!", bot.me.id }
+	/* on_ready에 슬래시 명령어 등록 */
+	bot.on_ready([&bot](const dpp::ready_t& event)
+	{
+		/* run_once로 랩하여 재연결 때마다 실행되지 않도록 함.*/
+		if (dpp::run_once<struct register_bot_commands>())
+		{
+			std::vector<dpp::slashcommand> commands
+			{
+				{ "ping", "We play \"Ping pong!\" for a test!", bot.me.id }
 			};
-
 			bot.global_bulk_command_create(commands);
 		}
 	});
 
-	/* Handle slash command with the most recent addition to D++ features, coroutines! */
-	bot.on_slashcommand([](const dpp::slashcommand_t& event) -> dpp::task<void> {
-		if (event.command.get_command_name() == "ping") {
-			co_await event.co_reply("Pong!");
-		}
-		co_return;
+	/* D++ 기능, 코루틴에 가장 최근에 추가된 기능으로 슬래시 명령을 처리 */
+	bot.on_slashcommand([](const dpp::slashcommand_t& event) -> dpp::task<void>
+	{
+			if (event.command.get_command_name() == "ping")
+				co_await event.co_reply("!P!O!N!G!");
+			co_return;
 	});
 
-	/* Start the bot */
+	/* 봇 시작 */
 	bot.start(dpp::st_wait);
 
 	return 0;
