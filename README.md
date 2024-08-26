@@ -9,4 +9,6 @@
 ## [이 프로젝트](https://github.com/HarryKito/_WIN_Haiiron-discrod-bot) 사용법
 
 키 값을 저장하는 파일 __(key)__ 에 저장하여 사용하면 된다.
-![alt text](resource/KeyInfo.png)
+![Insert key to Key file](resource/KeyInfo.png)  
+### 만약 키값이 없다면 아래와 같은 에러를 일으킴.
+![abort() ERROR](resource/no_key_error.png)
