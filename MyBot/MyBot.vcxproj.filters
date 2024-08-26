@@ -293,5 +293,8 @@
     <ClInclude Include="dependencies\include\dpp-10.0\dpp\nlohmann\json_fwd.hpp">
       <Filter>DPP\nlohmann</Filter>
     </ClInclude>
+    <ClInclude Include="weather.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -25,7 +25,7 @@ string get_discord_token()
 
 	if (file.is_open())
 	{
-	getline(file, key);  // READ only one line of the 'key' file
+	getline(file, key);
 	file.close();
     }
 	else

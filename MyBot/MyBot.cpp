@@ -1,6 +1,6 @@
 #include "MyBot.h"
 #include <dpp/dpp.h>
-
+#include "weather.h"
 // FIXME: 
 //	봇 명령 입출력에서 한글이 지원되지 않음...
 // UTF-8 문제일까?
@@ -30,7 +30,8 @@ int main()
 		{
 			std::vector<dpp::slashcommand> commands
 			{
-				{ "ping", "We play \"Ping pong!\" for a test!", bot.me.id }
+				{ "ping", "We play \"Ping pong!\" for a test!", bot.me.id },
+				{ "weather", "Weather informations...", bot.me.id }
 			};
 			bot.global_bulk_command_create(commands);
 		}
@@ -40,7 +41,14 @@ int main()
 	bot.on_slashcommand([](const dpp::slashcommand_t& event) -> dpp::task<void>
 	{
 			if (event.command.get_command_name() == "ping")
+			{
 				co_await event.co_reply("!P!O!N!G!");
+			}
+			if (event.command.get_command_name() == "weather")
+			{
+				co_await event.co_reply("Developing...");
+				show_data();
+			}
 			co_return;
 	});
 
