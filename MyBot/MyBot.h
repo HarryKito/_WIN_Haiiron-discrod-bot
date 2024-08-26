@@ -20,7 +20,7 @@ using namespace std;
 // Get the TOKEN
 string get_discord_token()
 {
-	ifstream file("key");
+	ifstream file("secret/key");
 	string key;
 
 	if (file.is_open())
