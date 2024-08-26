@@ -1,7 +1,5 @@
-# tokens
-MyBot/key
-MyBot/token
-weather
+# secrets
+MyBot/secret
 
 # development envs...
 /.vs
